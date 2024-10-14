@@ -16,7 +16,7 @@ class Truck extends Vehicle {
   topSpeed: number;
   wheels: Wheel[];
   towingCapacity: number;
-  AbletoTow: boolean;
+  
 
   // TODO: Declare properties of the Truck class
   // TODO: The properties should include vin, color, make, model, year, weight, top speed, wheels, and towing capacity
