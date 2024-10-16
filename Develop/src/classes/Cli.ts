@@ -281,7 +281,7 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          [ frontWheels, backWheels ]
+          [frontWheels, backWheels]
         );
         // push the motorbike to the vehicles array
         this.vehicles.push(motorbike);
@@ -404,16 +404,37 @@ class Cli {
           }
         }
         else if (answers.action === "Tow a vehicle") {
-          if (this.selectedVehicleType === 'Truck') {
-            return this.findVehicleToTow(this.selectedVehicle as Truck)
+          let truck: Truck | undefined
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Truck) {
+              truck = this.vehicles[i] as Truck
+            }
+            if (truck) {
+              truck.tow()
+            }
           }
         }
+        //   for (let i = 0; i < this.vehicles.length; i++) {
+        //     if (this.vehicles[i].vin === this.selectedVehicleVin) {
+        //       this.vehicles[i].findVehicleToTow();
+        //     }
+        // }
+        // if (this.selectedVehicleType === 'Truck') {
+        //   return this.findVehicleToTow(this.selectedVehicle as Truck)
+        // }
+        // }
 
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+
         else if (answers.action === 'Perform a Wheelie') {
-          if (this.selectedVehicleType === 'Motorbike') {
-            const bike = this.selectedVehicle as Motorbike
-            return bike.wheelie()
+          let motorbike: Motorbike | undefined
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike) {
+              motorbike = this.vehicles[i] as Motorbike
+            }
+          }
+          if (motorbike) {
+            motorbike.wheelie()
           }
         }
         else if (answers.action === 'Select or create another vehicle') {
