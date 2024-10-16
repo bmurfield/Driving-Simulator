@@ -31,7 +31,6 @@ const motorbike1 = new Motorbike(Cli.generateVin(), "black", "Harley Davidson", 
 
 vehicles.push(truck1);
 vehicles.push(car1);
-
 vehicles.push(motorbike1);
 
 // create a new instance of the Cli class
