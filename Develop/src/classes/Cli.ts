@@ -6,11 +6,12 @@ import Motorbike from "./Motorbike.js";
 import Wheel from "./Wheel.js";
 import Vehicle from "./Vehicle.js";
 
+
 // defines the Cli class
 class Cli {
   vehicles: (Car | Truck | Motorbike)[];
   selectedVehicleVin: string | undefined;
-  selectedVehicleType: string | undefined;
+  // selectedVehicleType: string | undefined;
   selectedVehicle: (Car | Truck | Motorbike | undefined);
   exit: boolean = false;
 
@@ -49,7 +50,7 @@ class Cli {
         this.selectedVehicleVin = answers.selectedVehicleVin;
         for (let i = 0; i < this.vehicles.length; i++) {
           if (this.selectedVehicleVin === this.vehicles[i].vin) {
-            this.selectedVehicleType = this.vehicles[i].constructor.name
+            // this.selectedVehicleType = this.vehicles[i].constructor.name
             this.selectedVehicle = this.vehicles[i]
           }
         }
@@ -307,15 +308,17 @@ class Cli {
               name: `${vehicle.vin} -- ${vehicle.make} ${vehicle.model}`,
               value: vehicle,
             };
-          }),
-        },
+          })
+        }, 
       ])
       .then((answers) => {
+        // console.log(answers)
         if (answers.vehicleToTow.constructor.name === 'Truck') {
+          // console.log('answers:', answers)
           console.log(`The truck can not tow itself.`)
         } else {
           truck.tow(answers.vehicleToTow)
-          this.performActions()
+          this.performActions()          
         }
       });
   }
@@ -404,24 +407,29 @@ class Cli {
           }
         }
         else if (answers.action === "Tow a vehicle") {
+          // console.log ('truck towing')
           let truck: Truck | undefined
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Truck) {
               truck = this.vehicles[i] as Truck
             }
-            if (truck) {
-              truck.tow()
-            }
           }
+            if (truck) {
+              this.findVehicleToTow(truck)
+              return;
+            } else {
+              console.log('This vehicle is not a truck')
+            }
+          
         }
         //   for (let i = 0; i < this.vehicles.length; i++) {
         //     if (this.vehicles[i].vin === this.selectedVehicleVin) {
         //       this.vehicles[i].findVehicleToTow();
         //     }
         // }
-        // if (this.selectedVehicleType === 'Truck') {
+        // else if (this.selectedVehicleType === 'Truck') {
         //   return this.findVehicleToTow(this.selectedVehicle as Truck)
-        // }
+        // // }
         // }
 
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
