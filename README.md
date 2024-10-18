@@ -36,7 +36,7 @@ MIT License is listed in LICENSE file
 
 ## Examples
 
-Here is a link to a video of the application in action:
+Here is a link to a video of the application in action: https://drive.google.com/file/d/1ABIhLAlLVRMMr_ZSpWCli1YI9WYp2PZs/view?usp=sharing
 
 ## How to Contribute
 
