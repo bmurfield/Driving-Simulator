@@ -432,6 +432,9 @@ class Cli {
           if (motorbike) {
             motorbike.wheelie()
           }
+          else {
+            console.log ('This vehicle is not a motorcycle')
+          }
         }
         else if (answers.action === 'Select or create another vehicle') {
           // start the cli to return to the initial prompt if the user wants to select or create another vehicle
